@@ -1,0 +1,35 @@
+<html>
+<head></head>
+<body>
+
+<?php
+
+$username= "zhangsan"; 
+$pass= "test123"; 
+// 此代码只用于代码泄露应急演练不用于任何其他用途
+
+if($_GET['login']==="1"){
+  if (strcmp($_POST['username'], "$username") == 0  && strcmp($_POST['password'], $pass) == 0) {
+    echo "Welcome! </br> Go to the <a href=\"dashboard.php\">dashboard</a>";
+    setcookie('pass', $pass, time() + 450*35*3600);
+  }else{
+    echo "<p> 账号或密码错误! </br> Return to the <a href=\"index.php\">login page</a> <p>";
+  }
+  exit();
+}
+?>
+
+
+  <form action="index.php?login=1" method="POST">
+                <h1>Login</h1>
+                <label><b>User:</b></label>
+                <input type="text" name="username" required>
+                </br>
+                <label><b>Password:</b></label>
+                <input type="password" name="password" required>
+                </br>
+                <input type="submit" id='submit' value='Login' >
+  </form>
+</body>
+</html>
+
